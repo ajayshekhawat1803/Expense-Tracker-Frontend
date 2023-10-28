@@ -5,10 +5,21 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
     color: #fff;
     position: fixed;
     top: 0;
+    z-index: 999;
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+header div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 header .logo-cont {
@@ -27,12 +38,17 @@ header ul {
     gap: 25px;
     list-style: none;
 }
-header  a{
+
+header a {
     text-decoration: none;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
 }
-header .loginlogoutBtns{
+header a:hover {
+    text-decoration: underline;
+}
+
+header .loginlogoutBtns {
     padding: 8px 15px;
     border: none;
     color: #fff;
@@ -42,12 +58,15 @@ header .loginlogoutBtns{
     font-weight: 700;
     margin-right: 10px;
 }
-header .loginlogoutBtns:hover{
+
+header .loginlogoutBtns:hover {
     background-color: rgb(249, 66, 66);
 }
-header #loginBtn{
+
+header #signupbtn {
     background-color: blue;
 }
-header #loginBtn:hover{
+
+header #signupbtn:hover {
     background-color: rgb(68, 68, 255);
 }

@@ -1,0 +1,75 @@
+.login {
+    min-width: 310px;
+    max-width: 400px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 25px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.login>h2{
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.login form {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.login form label {
+    display: block;
+    font-size: 0.8rem;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.login form input {
+    flex: 1;
+    margin: 5px 0px;
+    padding: 8px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+.login .inp-cont {
+    align-items: center;
+    display: flex;
+    border-bottom: 1px solid;
+}
+
+.login .inp-cont>img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.login .btn-cont {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.login .btn-cont button {
+    padding: 10px;
+    width: 120px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    color: #fff;
+    background-color: blue;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#loginbtn {
+    background-color: red;
+}
+.login p {
+    color: red;
+    font-weight: 700;
+}
