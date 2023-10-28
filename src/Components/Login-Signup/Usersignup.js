@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import './LoginSignup.css'
 import userIcon from '../../Assets/user.png'
 import lock from '../../Assets/padlock.png'
+import mail from '../../Assets/mail.png'
 
 const UserSignup = () => {
-    const initialvalues = { name: "", username: "", password: "", cnfpassword: "" }
+    const initialvalues = { name: "", email: "", username: "", password: "", cnfpassword: "" }
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
+
+    const serverLink = "http://localhost:4000/"
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -22,7 +26,8 @@ const UserSignup = () => {
         // console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             // console.log(formvalues);
-            console.log("Data Submitted");
+            // console.log("Data Submitted");
+            RegisterUser()
         }
     }, [formErrors])
 
@@ -30,6 +35,9 @@ const UserSignup = () => {
         const errors = {}
         if (!values.name) {
             errors.name = "Name is Required"
+        }
+        if (!values.email) {
+            errors.email = "Email is Required"
         }
         if (!values.username) {
             errors.username = "Username is Required"
@@ -41,10 +49,15 @@ const UserSignup = () => {
         }
         if (!values.cnfpassword) {
             errors.cnfpassword = "Confirm your Password"
-        } else if (values.password != values.cnfpassword) {
+        } else if (values.password !== values.cnfpassword) {
             errors.cnfpassword = "Password did not matched"
         }
         return errors
+    }
+
+    const RegisterUser = async () => {
+        let response = await axios.post(`${serverLink}user/register`, formvalues)
+        console.log(response.data);
     }
 
     return (
@@ -64,6 +77,19 @@ const UserSignup = () => {
                         />
                     </div>
                     <p>{formErrors.name}</p>
+                    <br />
+                    <label>Email</label>
+                    <div className='inp-cont'>
+                        <img src={mail} alt='Icon' />
+                        <input type='email'
+                            autoFocus
+                            placeholder='Enter Your email'
+                            name='email'
+                            value={formvalues.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <p>{formErrors.email}</p>
                     <br />
                     <label>Username</label>
                     <div className='inp-cont'>

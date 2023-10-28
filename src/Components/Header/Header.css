@@ -16,6 +16,11 @@ header.scrolled {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+header #menuIcon {
+    display: none;
+    cursor: pointer;
+}
+
 header div:first-child {
     display: flex;
     align-items: center;
@@ -44,6 +49,7 @@ header a {
     color: #fff;
     font-size: 1.15rem;
 }
+
 header a:hover {
     text-decoration: underline;
 }
@@ -69,4 +75,60 @@ header #signupbtn {
 
 header #signupbtn:hover {
     background-color: rgb(68, 68, 255);
+}
+
+.sideHeader {
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid;
+}
+
+.sideHeader .logo-cont {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 10px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sideHeader .logo-cont a img {
+    width: 100px;
+}
+
+.sideHeader .logo-cont>img {
+    height: 25px;
+    cursor: pointer;
+}
+.sideHeader ul{
+    list-style: none;
+    width: 100%;
+    /* padding: 20px; */
+}
+.sideHeader li a{
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+}
+.sideHeader li a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width:920px) {
+    header nav {
+        display: none;
+    }
+
+    header #menuIcon {
+        display: block;
+        height: 35px;
+        filter: invert(100%);
+    }
 }
