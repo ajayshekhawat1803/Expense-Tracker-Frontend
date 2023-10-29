@@ -1,0 +1,40 @@
+.other {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.other h5 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.other input,
+.other select {
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 8px 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+.other p {
+    font-weight: 700;
+    color: red;
+    margin-bottom: 12px;
+}
+.other button{
+    width: 150px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 800;
+    background-color: blue;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.other button:hover{
+    background-color: rgb(60, 60, 252);
+}

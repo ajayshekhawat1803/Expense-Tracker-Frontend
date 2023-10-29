@@ -1,0 +1,83 @@
+.pieChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.pieChart div {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    gap: 20px;
+    justify-content: center;
+}
+
+.pieChart div>span {
+    color: #555;
+    font-weight: 700;
+}
+
+.pieChart div span span.tagname {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-right: 5px;
+    color: black;
+    width: 100px;
+    display: inline-block;
+}
+
+span.colorbox {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    margin-right: 3px;
+}
+
+span#red {
+    background-color: red;
+}
+
+span#green {
+    background-color: #33FF57;
+}
+
+span#blue {
+    background-color: blue;
+}
+
+@media (max-width:1050px) {
+    .pieChart {
+        flex-direction: column;
+    }
+    .pieChart div {
+        gap: 10px;
+    }
+}
+
+@media (max-width:830px) {
+    .pieChart {
+        flex-direction: row;
+    }
+    .pieChart div {
+        gap: 20px;
+    }
+}
+
+@media (max-width:660px) {
+    .pieChart {
+        flex-direction: column;
+    }
+
+    .pieChart div {
+        gap: 10px;
+    }
+}
+
+@media (max-width:370px) {
+    .pieChart canvas {
+        width: 250px;
+        height: 250px;
+    }
+}
