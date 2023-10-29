@@ -32,13 +32,18 @@ const UserLogin = () => {
     }, [formErrors])
 
     const loginUser = async () => {
-        // console.log("Sending Data");
         let response = await axios.post(`${serverLink}user/login`, formvalues)
         response = response.data
-        if (response.name) {
+        if (response.userToLogin) {
             localStorage.setItem("ExpenseTrackerUserData", JSON.stringify(response))
             alert("Successfull Login")
             navigate("/")
+        }
+        else if (response.message === "Password Incorrect") {
+            alert("Incorrect Password")
+        }
+        else if (response.message === "No User Found") {
+            alert("No User Found With this username")
         }
     }
 
