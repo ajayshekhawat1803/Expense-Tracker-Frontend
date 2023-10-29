@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   const getUserData = async (id) => {
     let response = await axios.get(`${serverLink}user/getData/${id}`)
-    console.log(response.data);
+    // console.log(response.data);
     setAllData(response.data)
     const TempExp = response.data.expense.reduce((acc, curr) => {
       return acc + Number(curr.expenseAmount)

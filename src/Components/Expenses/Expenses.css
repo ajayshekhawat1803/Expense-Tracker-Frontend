@@ -1,0 +1,42 @@
+.Expenses-main{
+    padding-top: 100px;
+}
+.expenses{
+    background-color: aliceblue;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+.expenses>h1{
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+.expenses #expense-heading{
+    margin-bottom: 20px;
+}
+.expenses .expense-cont{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+}
+.expenses .expense-box{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    justify-content: center;
+    gap: 0px;
+    flex-direction: column;
+}
+.expenses .expense-box h3{
+    font-size: 1.05rem;
+    display: flex;
+    color: #444;
+}
+.expenses .expense-box h3 span{
+    font-size: 0.95rem;
+    display: block;
+    min-width: 180px;
+    color: #000;
+}

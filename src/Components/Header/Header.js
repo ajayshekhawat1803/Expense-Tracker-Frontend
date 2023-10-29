@@ -37,11 +37,11 @@ const Header = () => {
                     </div>
                     <nav>
                         <ul>
-                            <li><Link>Home</Link></li>
-                            <li><Link>Expenses</Link></li>
-                            <li><Link>Investment</Link></li>
-                            <li><Link>Budget</Link></li>
-                            <li><Link>Profile</Link></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/expenses">Expenses</Link></li>
+                            <li><Link to="/investment">Investment</Link></li>
+                            <li><Link to="/budget">Budget</Link></li>
+                            <li><Link to="/profile">Profile</Link></li>
                         </ul>
                     </nav>
                 </div>
@@ -49,8 +49,8 @@ const Header = () => {
                     {
                         UserAuth
                             ? <>
-                                <button className='loginlogoutBtns' onClick={()=>localStorage.removeItem("ExpenseTrackerUserData")}>Logout</button>
-                                
+                                <button className='loginlogoutBtns' onClick={() => localStorage.removeItem("ExpenseTrackerUserData")}>Logout</button>
+
                             </>
                             : <>
                                 <button className='loginlogoutBtns'
@@ -71,11 +71,11 @@ const Header = () => {
                         <img src={cross} alt='Close' onClick={() => setsideHeader(false)} />
                     </div>
                     <ul>
-                        <li><Link>Home</Link></li>
-                        <li><Link>Expenses</Link></li>
-                        <li><Link>Investment</Link></li>
-                        <li><Link>Budget</Link></li>
-                        <li><Link>Profile</Link></li>
+                        <li><Link to="/" onClick={() => setsideHeader(false)}>Home</Link></li>
+                        <li><Link to="/expenses" onClick={() => setsideHeader(false)}>Expenses</Link></li>
+                        <li><Link to="/investment" onClick={() => setsideHeader(false)}>Investment</Link></li>
+                        <li><Link to="/budget" onClick={() => setsideHeader(false)}>Budget</Link></li>
+                        <li><Link to="/profile" onClick={() => setsideHeader(false)}>Profile</Link></li>
                     </ul>
                 </div>
             }

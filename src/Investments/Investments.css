@@ -1,0 +1,42 @@
+.investments-main{
+    padding-top: 100px;
+}
+.investments{
+    background-color: aliceblue;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+.investments>h1{
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+.investments #investment-heading{
+    margin-bottom: 20px;
+}
+.investments .investment-cont{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+}
+.investments .investment-box{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    justify-content: center;
+    gap: 0px;
+    flex-direction: column;
+}
+.investments .investment-box h3{
+    font-size: 1.05rem;
+    display: flex;
+    color: #444;
+}
+.investments .investment-box h3 span{
+    font-size: 0.95rem;
+    display: block;
+    min-width: 180px;
+    color: #000;
+}
