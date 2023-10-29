@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Dashboard.css'
 import PieChart from './PieChart'
 import AddExpense from './AddExpense'
@@ -7,11 +8,15 @@ import AddIncome from './AddIncome'
 import AddInvestment from './AddInvestment'
 
 const Dashboard = () => {
+  const [AllData, setAllData] = useState({})
   const [UserAuth, setUserAuth] = useState({})
-  const [expenses, setExpenses] = useState(3000)
-  const [savings, setSavings] = useState(4000)
-  const [investment, setInvestment] = useState(6000)
-  const [Income, setIncome] = useState(expenses + savings + investment)
+  const [expenses, setExpenses] = useState(1)
+  const [investment, setInvestment] = useState(1)
+  // const [Income, setIncome] = useState(expenses + savings + investment)
+  const [Income, setIncome] = useState(1)
+  const [savings, setSavings] = useState(Income - expenses - investment)
+
+  const serverLink = "http://localhost:4000/"
 
   const [showAddExpense, setShowAddExpense] = useState(false)
   const [showAddIncome, setShowAddIncome] = useState(false)
@@ -24,11 +29,33 @@ const Dashboard = () => {
     if (!userData) {
       navigate("/login")
     }
+    else {
+      getUserData(JSON.parse(userData).userToLogin._id)
+    }
   }, [])
 
   useEffect(() => {
-    setIncome(expenses + savings + investment)
-  }, [expenses, savings, investment])
+    setSavings(Income - expenses - investment)
+  }, [expenses, Income, investment])
+
+  const getUserData = async (id) => {
+    let response = await axios.get(`${serverLink}user/getData/${id}`)
+    console.log(response.data);
+    setAllData(response.data)
+    const TempExp = response.data.expense.reduce((acc, curr) => {
+      return acc + Number(curr.expenseAmount)
+    }, 0)
+    setExpenses(TempExp)
+    const TempIncome = response.data.income.reduce((acc, curr) => {
+      return acc + Number(curr.incomeAmount)
+    }, 0)
+    setIncome(TempIncome)
+    const TempInvest = response.data.investment.reduce((acc, curr) => {
+      return acc + Number(curr.investedAmount)
+    }, 0)
+    setInvestment(TempInvest)
+    setSavings(TempIncome - TempExp - TempInvest)
+  }
 
   return (
     <div className='dashboard-main'>
@@ -39,7 +66,7 @@ const Dashboard = () => {
           <div className='left'>
             <h3 onClick={() => setShowAddExpense(!showAddExpense)}>Add Expense</h3>
             {
-              showAddExpense && <AddExpense />
+              showAddExpense && <AddExpense refreshData={getUserData} />
             }
             <h3 onClick={() => setShowAddIncome(!showAddIncome)}>Add Income</h3>
             {
