@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import './Other.css'
 
 const AddExpense = () => {
@@ -6,6 +8,10 @@ const AddExpense = () => {
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
+    const navigate = useNavigate()
+
+    const serverLink = "http://localhost:4000/"
+    let userData = JSON.parse(localStorage.getItem("ExpenseTrackerUserData"))
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,8 +28,17 @@ const AddExpense = () => {
         }
     }, [formErrors])
 
-    const addExpenseToDatabase = () => {
-        console.log("Expense ADDED");
+    const addExpenseToDatabase = async () => {
+        let response = await axios.post(`${serverLink}user/add-expense`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
+        console.log(response);
+        if (response.status === 201) {
+            setformvalues(initialvalues)
+            alert("New Expense Added")
+        }
+        if (response.data.message === "Token error") {
+            alert("Session Expired !!!")
+            navigate("/login")
+        }
     }
 
     const validate = (values) => {

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import './Other.css'
 
 const AddInvestment = () => {
@@ -6,6 +8,10 @@ const AddInvestment = () => {
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
+    const navigate = useNavigate()
+
+    const serverLink = "http://localhost:4000/"
+    let userData = JSON.parse(localStorage.getItem("ExpenseTrackerUserData"))
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,12 +24,21 @@ const AddInvestment = () => {
     }
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            addExpenseToDatabase()
+            addInvestmentToDatabase()
         }
     }, [formErrors])
 
-    const addExpenseToDatabase = () => {
-        console.log("Investment ADDED");
+    const addInvestmentToDatabase = async () => {
+        let response = await axios.post(`${serverLink}user/add-investment`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
+        console.log(response);
+        if (response.status === 201) {
+            setformvalues(initialvalues)
+            alert("New Investment Added")
+        }
+        if (response.data.message === "Token error") {
+            alert("Session Expired !!!")
+            navigate("/login")
+        }
     }
 
     const validate = (values) => {
@@ -58,14 +73,12 @@ const AddInvestment = () => {
                     value={formvalues.investmentCategory}
                     onChange={handleChange}>
                     <option value="">Not Selected</option>
-                    <option value="Debts and Loans">Debts and Loans</option>
-                    <option value="Education">Education</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Food and Dining">Food and Dining</option>
-                    <option value="Home Expenses">Home Expenses</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
-                    <option value="Personal Care">Personal Care</option>
-                    <option value="Transportation">Transportation</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Foreign Currency">Foreign Currency</option>
+                    <option value="Stocks">Stocks</option>
+                    <option value="Mutual Funds">Mutual Funds</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Other Investments">Other Investments</option>
                 </select>
                 <p>{formErrors.investmentCategory}</p>
                 <h5>Invested Amount</h5>
