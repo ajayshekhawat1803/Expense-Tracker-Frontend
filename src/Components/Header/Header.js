@@ -11,9 +11,8 @@ const Header = () => {
     const [sideHeader, setsideHeader] = useState(false)
     const navigate = useNavigate()
     useEffect(() => {
-        const userData = localStorage.getItem("UserAuth")
-        // console.log(userData);
-        setUserAuth(userData)
+        const userData = localStorage.getItem("ExpenseTrackerUserData")
+        setUserAuth(JSON.parse(userData))
     }, [])
     useEffect(() => {
         const handleScroll = () => {
@@ -32,7 +31,7 @@ const Header = () => {
         <>
             <header className={scrolled ? 'scrolled' : ''}>
                 <div>
-                    <img id='menuIcon' src={menu} alt='not loaded' onClick={()=>setsideHeader(true)}/>
+                    <img id='menuIcon' src={menu} alt='not loaded' onClick={() => setsideHeader(true)} />
                     <div className='logo-cont'>
                         <Link to="/"><img src={logo} alt='Expense Tracker' /></Link>
                     </div>
@@ -49,7 +48,10 @@ const Header = () => {
                 <div >
                     {
                         UserAuth
-                            ? <button className='loginlogoutBtns'>Logout</button>
+                            ? <>
+                                <button className='loginlogoutBtns' onClick={()=>localStorage.removeItem("ExpenseTrackerUserData")}>Logout</button>
+                                
+                            </>
                             : <>
                                 <button className='loginlogoutBtns'
                                     onClick={() => navigate("/login")}
@@ -66,7 +68,7 @@ const Header = () => {
                 <div className='sideHeader'>
                     <div className='logo-cont'>
                         <Link to="/"><img src={logo} alt='Expense Tracker' /></Link>
-                        <img src={cross} alt='Close' onClick={()=>setsideHeader(false)}/>
+                        <img src={cross} alt='Close' onClick={() => setsideHeader(false)} />
                     </div>
                     <ul>
                         <li><Link>Home</Link></li>

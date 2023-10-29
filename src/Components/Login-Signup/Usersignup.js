@@ -4,13 +4,14 @@ import './LoginSignup.css'
 import userIcon from '../../Assets/user.png'
 import lock from '../../Assets/padlock.png'
 import mail from '../../Assets/mail.png'
+import { useNavigate } from 'react-router-dom'
 
 const UserSignup = () => {
     const initialvalues = { name: "", email: "", username: "", password: "", cnfpassword: "" }
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
-
+    const navigate = useNavigate()
     const serverLink = "http://localhost:4000/"
 
     const handleChange = (e) => {
@@ -57,7 +58,14 @@ const UserSignup = () => {
 
     const RegisterUser = async () => {
         let response = await axios.post(`${serverLink}user/register`, formvalues)
-        console.log(response.data);
+        response = response.data
+        if (response.name) {
+            alert("Registration Successful")
+            navigate("/login")
+        }
+        else{
+            alert("Oops!! Something went wrong")
+        }
     }
 
     return (
