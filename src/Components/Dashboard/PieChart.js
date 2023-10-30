@@ -25,6 +25,13 @@ const PieChart = ({ Income, expenses,  investment,  savings }) => {
             ctx.fill();
 
             startAngle = endAngle;
+
+            // Display the percentage next to the category
+            ctx.font = 'bold 17px Arial';
+            ctx.fillStyle = 'black';
+            const textX = canvas.width / 2 + Math.cos(startAngle - percentage / 200 * Math.PI) * 90;
+            const textY = canvas.height / 2 + Math.sin(startAngle - percentage / 200 * Math.PI) * 90;
+            ctx.fillText(`${percentage.toFixed(1)}%`, textX, textY);
         });
     };
 

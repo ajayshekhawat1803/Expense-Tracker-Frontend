@@ -90,7 +90,6 @@ const UserSignup = () => {
                     <div className='inp-cont'>
                         <img src={mail} alt='Icon' />
                         <input type='email'
-                            autoFocus
                             placeholder='Enter Your email'
                             name='email'
                             value={formvalues.email}

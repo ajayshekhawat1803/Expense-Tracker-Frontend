@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './Other.css'
 
 const AddIncome = () => {
-    const initialvalues = { incomeName: "", incomeAmount: "" }
+    const initialvalues = { incomeName: "", incomeAmount: "", date: "" }
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
@@ -49,6 +49,9 @@ const AddIncome = () => {
         if (!values.incomeAmount) {
             errors.incomeAmount = "Add Income Amount"
         }
+        if (!values.date) {
+            errors.date = "Date of income received"
+        }
         return errors
     }
 
@@ -72,7 +75,13 @@ const AddIncome = () => {
                     onChange={handleChange}
                 />
                 <p>{formErrors.incomeAmount}</p>
-                <br />
+                <h5>Date of income received</h5>
+                <input type='date'
+                    name='date'
+                    value={formvalues.date}
+                    onChange={handleChange}
+                />
+                <p>{formErrors.date}</p>
                 <button type='submit'>Add Income</button>
             </form>
         </div>
