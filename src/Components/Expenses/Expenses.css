@@ -1,7 +1,8 @@
-.Expenses-main{
+.Expenses-main {
     padding-top: 100px;
 }
-.expenses{
+
+.expenses {
     background-color: aliceblue;
     width: 90%;
     max-width: 1000px;
@@ -9,34 +10,93 @@
     padding: 20px;
     border-radius: 10px;
 }
-.expenses>h1{
+
+.expenses>h1 {
     text-align: center;
     margin-bottom: 20px;
     text-decoration: underline;
 }
-.expenses #expense-heading{
-    margin-bottom: 20px;
+
+.expenses .exp-cat {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 20px;
 }
-.expenses .expense-cont{
+
+.expenses .exp-cat select {
+    width: 140px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 0.8rem;
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+#noData {
+    text-align: center;
+}
+
+.expense-cont {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0px;
+    gap: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.expense-cont .expense-box {
+    padding: 10px;
+    min-width: 290px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
     border-radius: 7px;
 }
-.expenses .expense-box{
-    display: flex;
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-    justify-content: center;
-    gap: 0px;
-    flex-direction: column;
+
+.expense-box>h3 {
+    margin-bottom: 12px;
+    width: fit-content;
+    border-bottom: 2px solid;
 }
-.expenses .expense-box h3{
-    font-size: 1.05rem;
+
+.expense-box .flex-box {
     display: flex;
+    width: 100%;
+}
+
+.expense-box .flex-box h4:first-child {
+    min-width: 120px;
     color: #444;
 }
-.expenses .expense-box h3 span{
-    font-size: 0.95rem;
-    display: block;
-    min-width: 180px;
-    color: #000;
+
+@media (max-width:590px) {
+    .expenses .exp-cat {
+        gap: 5px;
+        flex-direction: column;
+    }
+    .expense-cont .expense-box {
+        width: 100%;
+    }
+}
+@media (max-width:420px) {
+    .expenses {
+        width: 96%;
+        padding: 20px 10px;
+    }
+    .expense-box .flex-box h4{
+        font-size: 0.85rem;
+    }
+    .expense-cont .expense-box {
+       min-width: 250px;
+    }
 }
