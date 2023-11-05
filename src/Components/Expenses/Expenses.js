@@ -19,7 +19,6 @@ const Expenses = () => {
   const getUserData = async (id) => {
     let response = await axios.get(`${serverLink}user/getData/${id}`)
     setAllData(response.data.expense)
-    // console.log(response.data.expense);
   }
 
   useEffect(() => {
@@ -90,7 +89,7 @@ const Expenses = () => {
             <option value="2020">2020</option>
           </select>
         </div>
-        <div className='expense-cont'>
+        <div className='data-cont'>
           {
             showExpense.length > 0 ?
               <>
@@ -98,7 +97,7 @@ const Expenses = () => {
                   showExpense.map((exp, index) => {
                     // return <h1>name:{exp.expenseName} amount: {exp.expenseAmount} Category: {exp.expenseCategory} date: {exp.date}</h1>
                     return (
-                      <div className='expense-box' key={index}>
+                      <div className='data-box' key={index}>
                         <h3>{exp.expenseName}</h3>
                         <div className='flex-box'>
                           <h4>Category</h4>

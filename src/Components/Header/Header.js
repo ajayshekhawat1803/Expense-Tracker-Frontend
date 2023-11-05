@@ -40,7 +40,7 @@ const Header = () => {
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/expenses">Expenses</Link></li>
                             <li><Link to="/investment">Investment</Link></li>
-                            <li><Link to="/budget">Budget</Link></li>
+                            <li><Link to="/income">Income</Link></li>
                             <li><Link to="/profile">Profile</Link></li>
                         </ul>
                     </nav>
@@ -74,7 +74,7 @@ const Header = () => {
                         <li><Link to="/" onClick={() => setsideHeader(false)}>Home</Link></li>
                         <li><Link to="/expenses" onClick={() => setsideHeader(false)}>Expenses</Link></li>
                         <li><Link to="/investment" onClick={() => setsideHeader(false)}>Investment</Link></li>
-                        <li><Link to="/budget" onClick={() => setsideHeader(false)}>Budget</Link></li>
+                        <li><Link to="/income" onClick={() => setsideHeader(false)}>Income</Link></li>
                         <li><Link to="/profile" onClick={() => setsideHeader(false)}>Profile</Link></li>
                     </ul>
                 </div>

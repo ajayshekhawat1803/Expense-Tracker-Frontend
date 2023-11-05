@@ -39,7 +39,7 @@
     text-align: center;
 }
 
-.expense-cont {
+.data-cont {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 8px;
@@ -52,7 +52,7 @@
 
 }
 
-.expense-cont .expense-box {
+.data-cont .data-box {
     padding: 10px;
     min-width: 290px;
     width: 30%;
@@ -63,18 +63,18 @@
     border-radius: 7px;
 }
 
-.expense-box>h3 {
+.data-box>h3 {
     margin-bottom: 12px;
     width: fit-content;
     border-bottom: 2px solid;
 }
 
-.expense-box .flex-box {
+.data-box .flex-box {
     display: flex;
     width: 100%;
 }
 
-.expense-box .flex-box h4:first-child {
+.data-box .flex-box h4:first-child {
     min-width: 120px;
     color: #444;
 }
@@ -84,7 +84,7 @@
         gap: 5px;
         flex-direction: column;
     }
-    .expense-cont .expense-box {
+    .data-cont .data-box {
         width: 100%;
     }
 }
@@ -93,10 +93,10 @@
         width: 96%;
         padding: 20px 10px;
     }
-    .expense-box .flex-box h4{
+    .data-box .flex-box h4{
         font-size: 0.85rem;
     }
-    .expense-cont .expense-box {
+    .data-cont .data-box {
        min-width: 250px;
     }
 }

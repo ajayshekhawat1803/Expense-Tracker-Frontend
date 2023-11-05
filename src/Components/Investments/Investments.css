@@ -14,29 +14,42 @@
     margin-bottom: 20px;
     text-decoration: underline;
 }
-.investments #investment-heading{
-    margin-bottom: 20px;
+.inv-cat {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 20px;
 }
-.investments .investment-cont{
+
+.inv-cat select {
+    width: 140px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 0.8rem;
     background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 7px;
 }
-.investments .investment-box{
-    display: flex;
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-    justify-content: center;
-    gap: 0px;
-    flex-direction: column;
+
+@media (max-width:590px) {
+  .inv-cat {
+        gap: 5px;
+        flex-direction: column;
+    }
+    .expense-cont .expense-box {
+        width: 100%;
+    }
 }
-.investments .investment-box h3{
-    font-size: 1.05rem;
-    display: flex;
-    color: #444;
-}
-.investments .investment-box h3 span{
-    font-size: 0.95rem;
-    display: block;
-    min-width: 180px;
-    color: #000;
+@media (max-width:420px) {
+    .investments {
+        width: 96%;
+        padding: 20px 10px;
+    }
+    .expense-box .flex-box h4{
+        font-size: 0.85rem;
+    }
+    .expense-cont .expense-box {
+       min-width: 250px;
+    }
 }

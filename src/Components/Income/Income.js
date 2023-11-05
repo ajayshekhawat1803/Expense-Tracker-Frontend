@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import './Investments.css'
+import React, { useEffect, useState } from 'react'
 
-const Investments = () => {
+const Income = () => {
     const [AllData, setAllData] = useState([])
-    const [showInvestment, setshowInvestment] = useState([])
+    const [showIncome, setshowIncome] = useState([])
     const [year, setyear] = useState("allData")
     const [month, setmonth] = useState("all")
-    const [category, setcategory] = useState("")
+    // const [category, setcategory] = useState("")
     const [monthDisabled, setmonthDisabled] = useState(true)
     const serverLink = "http://localhost:4000/"
 
@@ -18,7 +17,7 @@ const Investments = () => {
 
     const getUserData = async (id) => {
         let response = await axios.get(`${serverLink}user/getData/${id}`)
-        setAllData(response.data.investment)
+        setAllData(response.data.income)
     }
 
     useEffect(() => {
@@ -31,31 +30,30 @@ const Investments = () => {
     }, [year])
 
     useEffect(() => {
-        handleInvestmentToShow()
-    }, [AllData, year, month, category])
+        handleIncomeToShow()
+    }, [AllData, year, month])
 
-    const handleInvestmentToShow = () => {
-        let filteredInvestment = AllData;
-        if (category) {
-            filteredInvestment = filteredInvestment.filter((inv) => (inv.investmentCategory === category));
-        }
+    const handleIncomeToShow = () => {
+        let filteredIncome = AllData;
+        // if (category) {
+        //     filteredIncome = filteredIncome.filter((inc) => (inc.incomeCategory === category));
+        // }
         if (year !== "allData") {
-            filteredInvestment = filteredInvestment.filter((inv) => inv.date.split("-")[0] === year);
+            filteredIncome = filteredIncome.filter((inc) => inc.date.split("-")[0] === year);
 
             if (month !== "all") {
-                filteredInvestment = filteredInvestment.filter((inv) => inv.date.split("-")[1] === month);
+                filteredIncome = filteredIncome.filter((inc) => inc.date.split("-")[1] === month);
             }
         }
-        setshowInvestment(filteredInvestment);
+        setshowIncome(filteredIncome);
     }
-
 
     return (
         <div className='investments-main'>
             <div className='investments'>
-                <h1>Investments</h1>
+                <h1>Income</h1>
                 <div className='inv-cat'>
-                    <select value={category} onChange={(e) => setcategory(e.target.value)}>
+                    {/* <select value={category} onChange={(e) => setcategory(e.target.value)}>
                         <option value="">Select Category</option>
                         <option value="Gold">Gold</option>
                         <option value="Foreign Currency">Foreign Currency</option>
@@ -63,7 +61,7 @@ const Investments = () => {
                         <option value="Mutual Funds">Mutual Funds</option>
                         <option value="Real Estate">Real Estate</option>
                         <option value="Other Investments">Other Investments</option>
-                    </select>
+                    </select> */}
                     <select disabled={monthDisabled} value={month} onChange={(e) => setmonth(e.target.value)}>
                         <option value="all">Complete Year</option>
                         <option value="01">January</option>
@@ -90,24 +88,24 @@ const Investments = () => {
                 </div>
                 <div className='data-cont'>
                     {
-                        showInvestment.length > 0 ?
+                        showIncome.length > 0 ?
                             <>
                                 {
-                                    showInvestment.map((inv, index) => {
+                                    showIncome.map((inc, index) => {
                                         return (
                                             <div className='data-box' key={index}>
-                                                <h3>{inv.investmentName}</h3>
-                                                <div className='flex-box'>
+                                                <h3>{inc.incomeName}</h3>
+                                                {/* <div className='flex-box'>
                                                     <h4>Category</h4>
                                                     <h4>{inv.investmentCategory}</h4>
-                                                </div>
+                                                </div> */}
                                                 <div className='flex-box'>
                                                     <h4>Expense Date</h4>
-                                                    <h4>{inv.date}</h4>
+                                                    <h4>{inc.date}</h4>
                                                 </div>
                                                 <div className='flex-box'>
                                                     <h4>Amount</h4>
-                                                    <h4>{inv.investedAmount}</h4>
+                                                    <h4>{inc.incomeAmount}</h4>
                                                 </div>
                                             </div>
                                         )
@@ -122,4 +120,4 @@ const Investments = () => {
     )
 }
 
-export default Investments
+export default Income
