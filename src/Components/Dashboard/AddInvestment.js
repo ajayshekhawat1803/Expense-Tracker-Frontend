@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './Other.css'
+import { context } from '../../App'
 
 const AddInvestment = () => {
-    const initialvalues = { investmentName: "", investmentCategory: "", investedAmount: "",date:"" }
+    const { investment, setInvestment, serverLink } = useContext(context)
+    const initialvalues = { investmentName: "", investmentCategory: "", investedAmount: "", date: "" }
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
     const navigate = useNavigate()
 
-    const serverLink = "http://localhost:4000/"
     let userData = JSON.parse(localStorage.getItem("ExpenseTrackerUserData"))
 
     const handleChange = (e) => {
@@ -29,10 +30,11 @@ const AddInvestment = () => {
     }, [formErrors])
 
     const addInvestmentToDatabase = async () => {
-        let response = await axios.post(`${serverLink}user/add-investment`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
+        let response = await axios.post(`${serverLink}/user/add-investment`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
         console.log(response);
         if (response.status === 201) {
             setformvalues(initialvalues)
+            setInvestment(investment)
             alert("New Investment Added")
         }
         if (response.data.message === "Token error") {

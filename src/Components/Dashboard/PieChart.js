@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import './PieChart.css'
+import { context } from '../../App';
 
-const PieChart = ({ Income, expenses,  investment,  savings }) => {
+const PieChart = () => {
+    const { Income, expenses, investment, savings } = useContext(context)
     const canvasRef = useRef();
 
     useEffect(() => {
@@ -41,7 +43,7 @@ const PieChart = ({ Income, expenses,  investment,  savings }) => {
             <canvas ref={canvasRef} width="300" height="300"></canvas>
             <div>
                 <span>
-                    <span  className='colorbox'></span>
+                    <span className='colorbox'></span>
                     <span className='tagname'>Income :</span>
                     {Income}
                 </span>

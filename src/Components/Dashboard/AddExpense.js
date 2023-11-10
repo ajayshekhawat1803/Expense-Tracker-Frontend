@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './Other.css'
+import { context } from '../../App'
 
 const AddExpense = () => {
+    const { expenses, setExpenses, serverLink } = useContext(context)
     const initialvalues = { expenseName: "", expenseCategory: "", expenseAmount: "", date: "" }
     const [formvalues, setformvalues] = useState(initialvalues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIssubmit] = useState(false)
     const navigate = useNavigate()
 
-    const serverLink = "http://localhost:4000/"
     let userData = JSON.parse(localStorage.getItem("ExpenseTrackerUserData"))
 
     const handleChange = (e) => {
@@ -29,10 +30,11 @@ const AddExpense = () => {
     }, [formErrors])
 
     const addExpenseToDatabase = async () => {
-        let response = await axios.post(`${serverLink}user/add-expense`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
+        let response = await axios.post(`${serverLink}/user/add-expense`, { ...formvalues, token: userData.token, _id: userData.userToLogin._id })
         console.log(response);
         if (response.status === 201) {
             setformvalues(initialvalues)
+            setExpenses(expenses)
             alert("New Expense Added")
         }
         if (response.data.message === "Token error") {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './Dashboard.css'
@@ -6,17 +6,17 @@ import PieChart from './PieChart'
 import AddExpense from './AddExpense'
 import AddIncome from './AddIncome'
 import AddInvestment from './AddInvestment'
+import { context } from '../../App'
 
 const Dashboard = () => {
-  const [AllData, setAllData] = useState({})
   const [UserAuth, setUserAuth] = useState({})
-  const [expenses, setExpenses] = useState(1)
-  const [investment, setInvestment] = useState(1)
-  // const [Income, setIncome] = useState(expenses + savings + investment)
-  const [Income, setIncome] = useState(1)
-  const [savings, setSavings] = useState(Income - expenses - investment)
-
-  const serverLink = "http://localhost:4000/"
+  const {
+    Income, setIncome,
+    expenses, setExpenses,
+    investment, setInvestment,
+    savings, setSavings,
+    serverLink } = useContext(context)
+  let userId;
 
   const [showAddExpense, setShowAddExpense] = useState(false)
   const [showAddIncome, setShowAddIncome] = useState(false)
@@ -25,6 +25,7 @@ const Dashboard = () => {
   const navigate = useNavigate()
   useEffect(() => {
     let userData = localStorage.getItem("ExpenseTrackerUserData")
+    userId = JSON.parse(userData).userToLogin._id
     setUserAuth(JSON.parse(userData))
     if (!userData) {
       navigate("/login")
@@ -36,12 +37,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     setSavings(Income - expenses - investment)
+    console.log("chala");
+    if (userId) {
+      getUserData(userId)
+    }
   }, [expenses, Income, investment])
 
   const getUserData = async (id) => {
-    let response = await axios.get(`${serverLink}user/getData/${id}`)
-    // console.log(response.data);
-    setAllData(response.data)
+    let response = await axios.get(`${serverLink}/user/getData/${id}`)
+    // setAllData(response.data)
     const TempExp = response.data.expense.reduce((acc, curr) => {
       return acc + Number(curr.expenseAmount)
     }, 0)
@@ -66,7 +70,7 @@ const Dashboard = () => {
           <div className='left'>
             <h3 onClick={() => setShowAddExpense(!showAddExpense)}>Add Expense</h3>
             {
-              showAddExpense && <AddExpense refreshData={getUserData} />
+              showAddExpense && <AddExpense />
             }
             <h3 onClick={() => setShowAddIncome(!showAddIncome)}>Add Income</h3>
             {
@@ -78,12 +82,7 @@ const Dashboard = () => {
             }
           </div>
           <div className='right'>
-            <PieChart
-              Income={Income}
-              expenses={expenses}
-              investment={investment}
-              savings={savings}
-            />
+            <PieChart />
           </div>
         </div>
       </div>

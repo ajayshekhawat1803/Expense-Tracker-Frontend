@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const Income = () => {
+const IncomeComp = () => {
     const [AllData, setAllData] = useState([])
     const [showIncome, setshowIncome] = useState([])
     const [year, setyear] = useState("allData")
@@ -9,6 +9,7 @@ const Income = () => {
     // const [category, setcategory] = useState("")
     const [monthDisabled, setmonthDisabled] = useState(true)
     const serverLink = "http://localhost:4000/"
+
 
     useEffect(() => {
         let userData = JSON.parse(localStorage.getItem("ExpenseTrackerUserData"))
@@ -120,4 +121,4 @@ const Income = () => {
     )
 }
 
-export default Income
+export default IncomeComp
